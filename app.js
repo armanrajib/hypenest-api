@@ -2,6 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 
+import productRouter from './routes/productRoutes.js';
+
 dotenv.config({ path: './.env' });
 
 const app = express();
@@ -18,15 +20,11 @@ app.use(express.json());
 // ROUTES HANDLERS
 // ================
 
-const getAllProducts = (req, res) => {
-  res.status(200).json({
-    message: 'Get all products',
-  });
-};
+// Note: The routes are handled in the routes folder. The routes are then imported into the app.js file and used as middleware.
 
 // ROUTES
 // =======
 
-app.get('/api/v1/products', getAllProducts);
+app.use('/api/v1/products', productRouter);
 
 export default app;
